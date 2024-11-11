@@ -92,7 +92,7 @@ main {
 /* Results Section */
 #results {
   flex: 2;
-  background: var(--light-text-color);
+  background: rgba(255, 255, 255, 0.6); /* White with 80% opacity */
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -142,6 +142,8 @@ button:hover {
 
 /* Results Container */
 #results-container {
+  max-height: 600px; /* Set your desired height */
+  overflow-y: auto; /* Enables vertical scrolling */
   margin-top: 20px;
   text-align: left;
 }
