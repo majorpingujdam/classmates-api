@@ -51,6 +51,8 @@ function displayResults(places, title) {
     const item = document.createElement('div');
     item.className = 'result-item';
     item.textContent = place;
+    item.addEventListener('click', () => openGoogleSearch(place)); // Add event listener to open Google search
+    addZoomEffect(item); // Add zoom-in effect on hover
     resultsContainer.appendChild(item);
   });
 }
@@ -74,7 +76,24 @@ function displayError(message) {
   resultsContainer.innerHTML = `<p style="color: red;">${message}</p>`;
 }
 
-// Event listeners
+// Zoom effect when hovering over elements
+function addZoomEffect(element) {
+  element.addEventListener('mouseenter', () => {
+    element.style.transform = 'scale(1.1)';
+    element.style.transition = 'transform 0.2s ease-in-out';
+  });
+  element.addEventListener('mouseleave', () => {
+    element.style.transform = 'scale(1)';
+  });
+}
+
+// Open a Google search for the clicked place
+function openGoogleSearch(place) {
+  const searchQuery = encodeURIComponent(place);
+  window.open(`https://www.google.com/search?q=${searchQuery}`, '_blank');
+}
+
+// Event listeners for the buttons
 document.getElementById('category-select').addEventListener('change', fetchByCategory);
 document.getElementById('min-rating').addEventListener('change', fetchByRating);
 document.getElementById('place-name').addEventListener('input', (event) => {

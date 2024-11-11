@@ -111,3 +111,23 @@ button:hover {
   margin-top: 0;
   color: var(--header-background);
 }
+
+/* Zoom effect transition */
+.result-item {
+  background-color: #F8F1E9;
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 4px;
+  cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+  transition: transform 0.2s ease-in-out; /* Smooth transition */
+}
+
+.result-item:hover {
+  transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+/* Optional: Add a hover effect on the buttons as well for consistency */
+button:hover {
+  background-color: #7C5E45;
+}
