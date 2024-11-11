@@ -131,3 +131,11 @@ button:hover {
 button:hover {
   background-color: #7C5E45;
 }
+
+.instruction-note {
+  font-size: 0.9em;
+  color: #8B5E3C;
+  margin-top: -10px;
+  margin-bottom: 15px;
+  font-style: italic;
+}
