@@ -3,38 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lower East Side Spots</title>
+  <title>Explore NYC Spots</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header>
-    <h1>Explore Spots in Lower East Side NYC</h1>
+    <h1>Discover Lower East Side Spots</h1>
+    <p>Search for popular spots in NYC by category, rating, or name.</p>
   </header>
 
   <main>
     <!-- Category Search Section -->
     <section id="category-search">
-      <h2>Find by Category</h2>
-      <select id="category-select">
+      <h2>Search by Category</h2>
+      <select id="category-select" title="Choose a category">
         <option value="restaurant">Restaurant</option>
         <option value="shop">Shop</option>
         <option value="cafe">Cafe</option>
       </select>
-      <button onclick="fetchByCategory()">Search by Category</button>
+      <button onclick="fetchByCategory()">Find Spots</button>
     </section>
 
     <!-- Minimum Rating Search Section -->
     <section id="rating-search">
-      <h2>Find by Minimum Rating</h2>
-      <input type="number" id="min-rating" placeholder="Enter minimum rating (1-5)" step="0.1" min="1" max="5">
-      <button onclick="fetchByRating()">Search by Rating</button>
+      <h2>Search by Minimum Rating</h2>
+      <input type="number" id="min-rating" placeholder="Enter minimum rating (1-5)" step="0.1" min="1" max="5" title="Enter a rating between 1 and 5">
+      <button onclick="fetchByRating()">Find Spots</button>
     </section>
 
     <!-- Name Search Section -->
     <section id="name-search">
-      <h2>Find Details by Name</h2>
-      <input type="text" id="place-name" placeholder="Enter place name">
-      <button onclick="fetchByName()">Search by Name</button>
+      <h2>Search by Name</h2>
+      <input type="text" id="place-name" placeholder="Enter place name" title="Enter the name of the place">
+      <button onclick="fetchByName()">Find Details</button>
     </section>
 
     <!-- Results Section -->

@@ -59,10 +59,12 @@ function displayResults(places, title) {
 function displayPlaceDetails(place) {
   const resultsContainer = document.getElementById('results-container');
   resultsContainer.innerHTML = `
-    <h3>${place.name}</h3>
-    <p><strong>Address:</strong> ${place.address}</p>
-    <p><strong>Rating:</strong> ${place.rating}</p>
-    <p><strong>Description:</strong> ${place.desc}</p>
+    <div class="result-item">
+      <h3>${place.name}</h3>
+      <p><strong>Address:</strong> ${place.address}</p>
+      <p><strong>Rating:</strong> ${place.rating}</p>
+      <p><strong>Description:</strong> ${place.desc}</p>
+    </div>
   `;
 }
 
@@ -71,3 +73,12 @@ function displayError(message) {
   const resultsContainer = document.getElementById('results-container');
   resultsContainer.innerHTML = `<p style="color: red;">${message}</p>`;
 }
+
+// Event listeners
+document.getElementById('category-select').addEventListener('change', fetchByCategory);
+document.getElementById('min-rating').addEventListener('change', fetchByRating);
+document.getElementById('place-name').addEventListener('input', (event) => {
+  if (event.key === 'Enter') {
+    fetchByName();
+  }
+});
