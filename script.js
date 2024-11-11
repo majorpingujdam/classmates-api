@@ -43,40 +43,47 @@ async function fetchByName() {
   }
 }
 
-// Display array of results
+// Display array of results with clickable restaurant names and static ratings
 function displayResults(places, title) {
   const resultsContainer = document.getElementById('results-container');
   resultsContainer.innerHTML = `<h3>${title}</h3>`;
   places.forEach(place => {
     const item = document.createElement('div');
     item.className = 'result-item';
-    item.textContent = place;
-    item.addEventListener('click', () => openGoogleSearch(place)); // Add event listener to open Google search
-    addZoomEffect(item); // Add zoom-in effect on hover
+
+    // Create a clickable title for the restaurant name
+    const name = document.createElement('span');
+    name.className = 'clickable-name';
+    name.textContent = place;
+    name.addEventListener('click', () => openGoogleSearch(place));
+    addZoomEffect(name); // Add zoom effect to the restaurant name
+
+    // Append only the clickable name to the item
+    item.appendChild(name);
     resultsContainer.appendChild(item);
   });
 }
 
-// Display detailed information for a single place
+// Display detailed information for a single place with non-clickable rating
 function displayPlaceDetails(place) {
   const resultsContainer = document.getElementById('results-container');
   resultsContainer.innerHTML = `
     <div class="result-item">
-      <h3>${place.name}</h3>
-      <p><strong>Address:</strong> ${place.address}</p>
+      <span class="clickable-name" onclick="openGoogleSearch('${place.name}')">${place.name}</span>
       <p><strong>Rating:</strong> ${place.rating}</p>
+      <p><strong>Address:</strong> ${place.address}</p>
       <p><strong>Description:</strong> ${place.desc}</p>
     </div>
   `;
 }
 
-// Display error message
-function displayError(message) {
-  const resultsContainer = document.getElementById('results-container');
-  resultsContainer.innerHTML = `<p style="color: red;">${message}</p>`;
+// Open a Google search for the clicked place
+function openGoogleSearch(place) {
+  const searchQuery = encodeURIComponent(place);
+  window.open(`https://www.google.com/search?q=${searchQuery}`, '_blank');
 }
 
-// Zoom effect when hovering over elements
+// Add zoom effect only to clickable names
 function addZoomEffect(element) {
   element.addEventListener('mouseenter', () => {
     element.style.transform = 'scale(1.1)';
@@ -86,18 +93,3 @@ function addZoomEffect(element) {
     element.style.transform = 'scale(1)';
   });
 }
-
-// Open a Google search for the clicked place
-function openGoogleSearch(place) {
-  const searchQuery = encodeURIComponent(place);
-  window.open(`https://www.google.com/search?q=${searchQuery}`, '_blank');
-}
-
-// Event listeners for the buttons
-document.getElementById('category-select').addEventListener('change', fetchByCategory);
-document.getElementById('min-rating').addEventListener('change', fetchByRating);
-document.getElementById('place-name').addEventListener('input', (event) => {
-  if (event.key === 'Enter') {
-    fetchByName();
-  }
-});
