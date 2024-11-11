@@ -1,26 +1,37 @@
+/* Color Palette */
+:root {
+  --background-color: #F3E5D0;
+  --header-background: #8B5E3C;
+  --accent-color: #A07855;
+  --text-color: #4B3621;
+  --light-text-color: #FFFFFF;
+}
+
 body {
   font-family: 'Arial', sans-serif;
-  background-color: #eaeaea;
-  color: #333;
+  background-color: var(--background-color);
+  color: var(--text-color);
   margin: 0;
   padding: 0;
 }
 
 header {
-  background-color: #007acc;
-  color: white;
+  background-color: var(--header-background);
+  color: var(--light-text-color);
   padding: 20px;
   text-align: center;
 }
 
 header h1 {
+  font-family: 'Merriweather', serif;
   margin: 0;
-  font-size: 2em;
+  font-size: 2.5em;
 }
 
 header p {
   margin: 0;
   font-size: 1.2em;
+  color: var(--light-text-color);
 }
 
 /* Main container layout */
@@ -36,7 +47,7 @@ main {
 #search-options {
   flex: 1;
   max-width: 300px;
-  background: #fff;
+  background: var(--light-text-color);
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -44,15 +55,16 @@ main {
 
 #results {
   flex: 2;
-  background: #fff;
+  background: var(--light-text-color);
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 section h2 {
+  font-family: 'Playfair Display', serif;
   font-size: 1.5em;
-  color: #007acc;
+  color: var(--header-background);
 }
 
 input, select, button {
@@ -66,14 +78,20 @@ input, select, button {
 }
 
 button {
-  background-color: #007acc;
-  color: white;
+  background-color: var(--accent-color);
+  color: var(--light-text-color);
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 button:hover {
-  background-color: #005f99;
+  background-color: #7C5E45;
+}
+
+.note {
+  font-size: 0.9em;
+  color: var(--text-color);
+  margin-top: -8px;
 }
 
 #results-container {
@@ -82,7 +100,7 @@ button:hover {
 }
 
 .result-item {
-  background-color: #f9f9f9;
+  background-color: #F8F1E9;
   border: 1px solid #ddd;
   padding: 15px;
   margin: 10px 0;
@@ -91,5 +109,5 @@ button:hover {
 
 .result-item h3 {
   margin-top: 0;
-  color: #007acc;
+  color: var(--header-background);
 }
