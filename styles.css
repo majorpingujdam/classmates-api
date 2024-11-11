@@ -55,6 +55,7 @@ header {
   color: var(--light-text-color);
   padding: 20px;
   text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 header h1 {
@@ -92,7 +93,7 @@ main {
 /* Results Section */
 #results {
   flex: 2;
-  background: rgba(255, 255, 255, 0.6); /* White with 80% opacity */
+  background: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -102,6 +103,7 @@ section h2 {
   font-family: 'Playfair Display', serif;
   font-size: 1.5em;
   color: var(--header-background);
+  margin-bottom: 10px;
 }
 
 /* Form Elements */
@@ -119,11 +121,13 @@ button {
   background-color: var(--accent-color);
   color: var(--light-text-color);
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
 button:hover {
   background-color: #7C5E45;
+  transform: translateY(-2px);
 }
 
 /* Note and Instruction Text */
@@ -147,6 +151,7 @@ button:hover {
   overflow-x: hidden; /* Prevents horizontal overflow */
   margin-top: 20px;
   text-align: left;
+  padding-right: 10px; /* Prevent scrollbar overlap */
   position: relative; /* Keeps child elements within the container */
 }
 
@@ -159,7 +164,9 @@ button:hover {
   margin: 10px 0;
   border-radius: 4px;
   cursor: pointer;
-  transition: transform 0.2s ease-in-out; /* Smooth transition for zoom effect */
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .result-item h3 {
@@ -169,7 +176,8 @@ button:hover {
 
 /* Zoom Effect on Hover */
 .result-item:hover {
-  transform: scale(1.1); /* Slight zoom effect on hover */
+  transform: scale(1.05); /* Slight zoom effect on hover */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
 }
 
 /* Clickable Name Styling */

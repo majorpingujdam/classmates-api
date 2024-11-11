@@ -1,5 +1,19 @@
 const apiBaseUrl = 'https://east-side-spots-api.onrender.com';
 
+// Fetch all places initially to allow searching locally
+let allPlaces = [];
+
+// Fetch all places on load to enable case-insensitive name searching
+async function fetchAllPlaces() {
+  try {
+    const response = await fetch(`${apiBaseUrl}/spot?category=all`);
+    allPlaces = await response.json();
+  } catch (error) {
+    console.error('Error fetching all places:', error);
+    displayError('Failed to load places.');
+  }
+}
+
 // Fetch by category
 async function fetchByCategory() {
   const category = document.getElementById('category-select').value;
@@ -28,25 +42,25 @@ async function fetchByRating() {
   }
 }
 
-// Fetch by name
-async function fetchByName() {
-  const name = document.getElementById('place-name').value.trim();
-  if (!name) return displayError('Please enter a place name.');
-  
-  try {
-    const response = await fetch(`${apiBaseUrl}/name/${encodeURIComponent(name)}`);
-    const data = await response.json();
-    displayPlaceDetails(data);
-  } catch (error) {
-    console.error('Error fetching by name:', error);
-    displayError('Failed to fetch place details.');
-  }
+// Search by name in a case-insensitive and partial matching manner
+function searchByName() {
+  const input = document.getElementById('place-name').value.trim().toLowerCase();
+  if (!input) return displayError('Please enter a place name.');
+
+  const filteredPlaces = allPlaces.filter(place => place.toLowerCase().includes(input));
+  displayResults(filteredPlaces, `Results for: "${input}"`);
 }
 
 // Display array of results with clickable restaurant names and static ratings
 function displayResults(places, title) {
   const resultsContainer = document.getElementById('results-container');
   resultsContainer.innerHTML = `<h3>${title}</h3>`;
+
+  if (places.length === 0) {
+    resultsContainer.innerHTML += '<p>No results found.</p>';
+    return;
+  }
+
   places.forEach(place => {
     const item = document.createElement('div');
     item.className = 'result-item';
@@ -93,3 +107,13 @@ function addZoomEffect(element) {
     element.style.transform = 'scale(1)';
   });
 }
+
+// Display an error message
+function displayError(message) {
+  const resultsContainer = document.getElementById('results-container');
+  resultsContainer.innerHTML = `<p style="color: red;">${message}</p>`;
+}
+
+// Initialize and load all places for searching by name
+fetchAllPlaces();
+document.getElementById('place-name').addEventListener('input', searchByName);
