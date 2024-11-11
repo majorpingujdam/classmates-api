@@ -142,11 +142,14 @@ button:hover {
 
 /* Results Container */
 #results-container {
-  max-height: 600px; /* Set your desired height */
+  max-height: 550px; /* Set the desired height */
   overflow-y: auto; /* Enables vertical scrolling */
+  overflow-x: hidden; /* Prevents horizontal overflow */
   margin-top: 20px;
   text-align: left;
+  position: relative; /* Keeps child elements within the container */
 }
+
 
 /* Result Items with Zoom Effect */
 .result-item {
